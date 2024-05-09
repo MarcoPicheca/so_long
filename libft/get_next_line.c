@@ -28,11 +28,11 @@ char	*ft_read(char *buff, int fd)
 	int		i;
 	char	*tmp;
 
-	tmp = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	tmp = (char *)ft_calloc2(BUFFER_SIZE + 1, sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i = 1;
-	while (!ft_strchr(buff, '\n') && i != 0)
+	while (!ft_strchr2(buff, '\n') && i != 0)
 	{
 		i = read(fd, tmp, BUFFER_SIZE);
 		if (rd_check(i, buff, tmp) == 0)
@@ -56,7 +56,7 @@ char	*next_line(char *buff)
 	char	*tmp;
 
 	i = ft_strlen_2(buff, 1);
-	tmp = (char *)ft_calloc(i + 2, sizeof(char));
+	tmp = (char *)ft_calloc2(i + 2, sizeof(char));
 	if (!tmp)
 	{
 		free(buff);
@@ -82,7 +82,7 @@ char	*cut_line(char *buff)
 
 	i = ft_strlen_2(buff, 0);
 	j = ft_strlen_2(buff, 1);
-	new = (char *)ft_calloc(i - j + 1, sizeof(char));
+	new = (char *)ft_calloc2(i - j + 1, sizeof(char));
 	if (!new)
 	{
 		free(buff);

@@ -2,13 +2,16 @@
 # define SO_LONG_H
 # include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
-# include "./minilibx/mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 
-typedef struct s_matrix
+typedef struct s_map
 {
-
-}				t_matrix;
+	char	**matrix;
+	int		lines;
+	int		x_size;
+	int		y_size;
+}				t_map;
 #endif

@@ -26,3 +26,23 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(p, b);
 	return (p);
 }
+
+void	*ft_calloc2(size_t memb, size_t size)
+{
+	char		*res;
+	size_t		i;
+
+	i = 0;
+	if (memb == 0 || size == 0)
+		res = malloc(sizeof(char));
+	else
+		res = (char *)malloc(memb * size);
+	if (!res)
+		return (NULL);
+	while (i < (memb * size))
+	{
+		res[i] = '\0';
+		i++;
+	}
+	return (res);
+}

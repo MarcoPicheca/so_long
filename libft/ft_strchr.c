@@ -29,3 +29,21 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)(s + i));
 	return (NULL);
 }
+
+char	*ft_strchr2(char *buff, int n)
+{
+	int	i;
+
+	i = 0;
+	if (!buff)
+		return (0);
+	if (n == '\0')
+		return ((char *)&buff[ft_strlen(buff)]);
+	while (buff[i])
+	{
+		if (buff[i] == (char) n)
+			return ((char *)&buff[i]);
+		i++;
+	}
+	return (0);
+}
