@@ -1,6 +1,8 @@
 NAME = so_long
 
 SRC	= main.c \
+	  map_parse_check.c \
+	  args_check.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -12,7 +14,8 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-MLX =  -Lminilibx-linux -lmlx -lX11 -lXext
+MLX =  -Lminilibx -lmlx -lX11 -lXext
+# MLX =  -Lminilibx-linux -lmlx -lX11 -lXext
 
 NONE='\033[0m'
 GREEN='\033[32m'
@@ -24,7 +27,8 @@ CURSIVE='\033[3m'
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	@make -sC minilibx-linux
+# @make -sC minilibx-linux
+	@make -sC minilibx
 	@make bonus -sC libft
 	@make -sC ft_printf
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(PRINTF) -o $(NAME)
@@ -32,6 +36,7 @@ $(NAME) : $(OBJ)
 
 clean :
 #@make clean -sC minilibx-linux
+	@make clean -sC minilibx
 	@make clean -sC libft
 	@make clean -sC ft_printf
 	@rm -rf $(OBJ)
