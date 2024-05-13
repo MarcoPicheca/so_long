@@ -8,9 +8,13 @@ int	main(int ac, char **av)
 		return (ft_printf("Invalid argument\n"));
 	map = (t_map){0};
 	args_check(av[1]);
-	if (count_lines(av[1], &map))
+	if (square_char_check(av[1], &map) ||
+		map.columns == map.lines || check_components(av[1], &map))
 	{
-		return(ft_printf("\nproblems creating the map\n"));
+		ft_printf("problems creating the map\n");
+		ft_printf("cols %d, lines %d\n", map.columns, map.lines);
+		return(0);
 	}
+	ft_printf("cols %d, lines %d\n", map.columns, map.lines);
 	return (0);
 }

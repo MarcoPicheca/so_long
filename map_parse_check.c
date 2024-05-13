@@ -12,6 +12,47 @@
 
 #include "so_long.h"
 
+// void	ft_free
+
+/*
+ * Controlla che i componenti di base siano di un numero corretto
+ * e alloca lo spazio necessario per raccogliere la matrice della mappa che verrà 
+ * salvata in map.matrix per altri controlli su bordo, contorni di P e di E
+ * e dei vari collectible.
+ * Salverà ogni linea componente della mappa in ogni linea della matrice
+ * per poi inviare la matrice al controllo.
+ * 
+*/
+int	check_components(char *str, t_map *map)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	fd = 0;
+	if (map->game_exit != 1)
+		return (1);
+	if (map->main_char != 1)
+		return (1);
+	map->matrix = (char **)malloc(sizeof(char *) * map->lines);
+	fd = open(fd, O_RDONLY);
+	if (!map->matrix)
+		return (1);
+	while (i < map->lines)
+	{
+		map->matrix[i] = get_next_line(fd);
+		if (!map->matrix[i])
+		{
+			ft_free_matrix(map->matrix);
+			close(fd);
+			return (1);
+		}
+		i++;
+	}
+	if (matrix_get(map));
+		return (1);
+	return (0);
+}
 
 int	check_char_map(char *str, t_map *map)
 {
@@ -24,10 +65,16 @@ int	check_char_map(char *str, t_map *map)
 			&& str[i] != 'E' && str[i] != '1'
 			&& str[i] != 'C' && str[i] != '\n')
 			return (1);
+		if (str[i] == 'P')
+			map->main_char++;
+		if (str[i] == 'E')
+			map->game_exit++;
+		if (str[i] == 'C')
+			map->collect++;
 		i++;
 	}
-	if (map->columns == 0 && i != 0)
-		map->columns = --i;
+	if (map->lines == 0 && i != 0)
+		map->lines = --i;
 	return (0);
 }
 
@@ -36,13 +83,12 @@ int	check_char_map(char *str, t_map *map)
  * dei caratteri componenti la mappa che alla funzione che
  * genera la matrice necessaria per la mappa
 */
-int		count_lines(char *str, t_map *map)
+int		square_char_check(char *str, t_map *map)
 {
 	char	*matrix;
 	int		fd;
 
 	fd = open(str, O_RDONLY);
-	map->columns = 0;
 	matrix = get_next_line(fd);
 	while (matrix)
 	{
@@ -54,12 +100,10 @@ int		count_lines(char *str, t_map *map)
 		}
 		free(matrix);
 		matrix = get_next_line(fd);
-		map->lines++;
+		map->columns++;
 	}
 	if (matrix)
 		free(matrix);
-	if (map->columns == map->lines)
-		return (1);
 	close(fd);
 	return(0);
 }
