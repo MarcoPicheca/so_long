@@ -13,8 +13,8 @@ typedef struct s_map
 	char	**matrix;
 	int		lines;
 	int		columns;
-	int		x_size;
-	int		y_size;
+	int		x;
+	int		y;
 	int		main_char;
 	int		game_exit;
 	int		collect;
@@ -25,5 +25,7 @@ int		ft_is_ber(char *str, int len, char *ext);
 int		args_check(char *str);
 int		check_char_map(char *str, t_map *map);
 int		square_char_check(char *str, t_map *map);
+void	ft_free_matrix(char **matrix);
+int		checker_map(t_map *map);
 
 #endif
