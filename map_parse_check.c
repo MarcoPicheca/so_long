@@ -33,9 +33,10 @@ int	mem_matrix_fd(char *str, t_map *map)
 		return (-1);
 	if (map->main_char != 1)
 		return (-1);
-	map->matrix = (char **)malloc(sizeof(char *) * map->columns);
+	map->matrix = (char **)malloc(sizeof(char *) * map->lines);
 	if (!map->matrix)
 		return (-1);
+	// map->matrix[(map->columns - 1)] = 0;
 	fd = open(str, O_RDONLY);
 	return (fd);
 }
@@ -66,12 +67,15 @@ int	check_components(char *str, t_map *map)
 		map->matrix[i] = get_next_line(fd);
 		if (!map->matrix[i])
 		{
-			ft_free_matrix(map->matrix);
+			ft_free_matrix(map);
 			close(fd);
 			return (1);
 		}
 		if (map->matrix[i][(map->columns - 1)] != '\n')
-			ft_free_matrix(map->matrix);
+		{
+			print_map(map->matrix);
+			ft_free_matrix(map);
+		}
 		map->matrix[i][(map->columns - 1)] = '\0';
 		i++;
 	}

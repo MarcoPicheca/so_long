@@ -25,7 +25,7 @@ int		ft_is_ber(char *str, int len, char *ext);
 int		args_check(char *str);
 int		check_char_map(char *str, t_map *map);
 int		square_char_check(char *str, t_map *map);
-void	ft_free_matrix(char **matrix);
+void	ft_free_matrix(t_map *map);
 int		checker_map(t_map *map);
 
 #endif

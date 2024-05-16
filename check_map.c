@@ -35,7 +35,7 @@ int	checker_map(t_map *map)
 {
 	if (len_lines(map))
 	{
-		ft_free_matrix(map->matrix);
+		ft_free_matrix(map);
 		exit(0);
 		return (1);
 	}

@@ -14,20 +14,21 @@
 
 // TODO: conditional jump ma da capire
 
-void	ft_free_matrix(char **matrix)
+void	ft_free_matrix(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i] != NULL)
+	// if (!matrix)
+	// 	return ;
+	while (map->matrix[i] != NULL)
 	{
-		free(matrix[i]);
+		free(map->matrix[i]);
 		i++;
 	}
-	free(matrix);
-	matrix = NULL;
+	free(map->matrix);
+	map->matrix = NULL;
+	map = (t_map *){0};
 	ft_printf("Problems creating the map\n");
 	exit(0);
 }
