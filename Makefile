@@ -36,6 +36,12 @@ $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(PRINTF) -o $(NAME)
 	@echo $(GREEN) "SO_LONG COMPILED\n"
 
+download:
+	@wget https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz
+	@tar -xf minilibx-linux.tgz
+#	@mv minilibx-linux mlx
+	@$(RM) minilibx-linux.tgz
+
 clean :
 	@make clean -sC minilibx-linux
 #@make clean -sC minilibx
@@ -52,4 +58,6 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all re fclean clean
+.PHONY : all re download fclean clean
+
+.SILENT:

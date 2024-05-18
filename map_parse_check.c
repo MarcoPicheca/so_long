@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:00:52 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/12 19:24:38 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:16:01 by lofiorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ int	mem_matrix_fd(char *str, t_map *map)
 		return (-1);
 	if (map->main_char != 1)
 		return (-1);
-	map->matrix = (char **)malloc(sizeof(char *) * map->lines);
+	map->matrix = (char **)ft_calloc(sizeof(char *), (map->lines + 1));
 	if (!map->matrix)
 		return (-1);
-	// map->matrix[(map->columns - 1)] = 0;
 	fd = open(str, O_RDONLY);
 	return (fd);
 }
@@ -67,16 +66,19 @@ int	check_components(char *str, t_map *map)
 		map->matrix[i] = get_next_line(fd);
 		if (!map->matrix[i])
 		{
-			ft_free_matrix(map);
 			close(fd);
+			ft_free_matrix(map);
 			return (1);
 		}
-		if (map->matrix[i][(map->columns - 1)] != '\n')
+		if (map->matrix[i][ft_strlen(map->matrix[i]) - 1] != '\n')
 		{
 			print_map(map->matrix);
+			close(fd);
 			ft_free_matrix(map);
 		}
-		map->matrix[i][(map->columns - 1)] = '\0';
+		// map->matrix[i] = ft_strtrim(map->matrix[i], "\n");
+		if (ft_strlen(map->matrix[i]) > 0 && map->matrix[i][ft_strlen(map->matrix[i]) - 1] == '\n')
+			map->matrix[i][ft_strlen(map->matrix[i]) - 1] = 0;
 		i++;
 	}
 	map->matrix[i] = NULL;

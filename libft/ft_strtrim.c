@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpicheca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:34:10 by mpicheca          #+#    #+#             */
-/*   Updated: 2022/11/17 11:10:12 by mpicheca         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:13:20 by lofiorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		first++;
 	}
 	newstr[i] = '\0';
+	free((char *)s1);
 	return (newstr);
 }

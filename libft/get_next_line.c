@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:27:32 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/06 18:32:17 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:18:00 by lofiorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,14 @@ char	*cut_line(char *buff)
 	j = ft_strlen_2(buff, 1);
 	new = (char *)ft_calloc2(i - j + 1, sizeof(char));
 	if (!new)
-	{
-		free(buff);
-		return (NULL);
-	}
+		return (free(buff), NULL);
 	j++;
 	z = 0;
 	while (j < i && buff[j] != '\0')
 		new[z++] = buff[j++];
 	free(buff);
+	if (!ft_strlen(new))
+		return (free(new), NULL);
 	return (new);
 }
 
