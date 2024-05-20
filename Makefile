@@ -16,7 +16,6 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-# MLX =  -Lminilibx -lmlx -lX11 -lXext
 MLX =  -Lminilibx-linux -lmlx -lX11 -lXext
 
 NONE='\033[0m'
@@ -30,7 +29,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@make -sC minilibx-linux
-# @make -sC minilibx
 	@make bonus -sC libft
 	@make -sC ft_printf
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(PRINTF) -o $(NAME)
@@ -39,12 +37,11 @@ $(NAME) : $(OBJ)
 download:
 	@wget https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz
 	@tar -xf minilibx-linux.tgz
-#	@mv minilibx-linux mlx
 	@$(RM) minilibx-linux.tgz
 
 clean :
 	@make clean -sC minilibx-linux
-#@make clean -sC minilibx
+# TODO:ricordati di mettere la riozione della cartella della mlx
 	@make clean -sC libft
 	@make clean -sC ft_printf
 	@rm -rf $(OBJ)
