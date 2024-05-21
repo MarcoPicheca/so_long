@@ -62,7 +62,7 @@ BOBJECTS = $(BSOURCE:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 
 all: $(NAME)

@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = next_line(buff);
 	buff = cut_line(buff);
-	if (!buff || !line)
+	if (!buff && !line)
 	{
 		free(line);
 		return (NULL);

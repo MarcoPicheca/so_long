@@ -76,9 +76,10 @@ int	check_components(char *str, t_map *map)
 			close(fd);
 			ft_free_matrix(map);
 		}
-		// map->matrix[i] = ft_strtrim(map->matrix[i], "\n");
-		if (ft_strlen(map->matrix[i]) > 0 && map->matrix[i][ft_strlen(map->matrix[i]) - 1] == '\n')
-			map->matrix[i][ft_strlen(map->matrix[i]) - 1] = 0;
+		map->matrix[i] = ft_strtrim(map->matrix[i], "\n");
+		// if (ft_strlen(map->matrix[i]) > 0 &&
+		// 	map->matrix[i][ft_strlen(map->matrix[i]) - 1] == '\n')
+		// 	map->matrix[i][ft_strlen(map->matrix[i]) - 1] = 0;
 		i++;
 	}
 	map->matrix[i] = NULL;
