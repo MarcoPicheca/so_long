@@ -23,7 +23,6 @@ int	len_lines(t_map *map)
 	while (j < map->lines)
 	{
 		len = ft_strlen(map->matrix[j]);
-		ft_printf("ci sono %d E %d\n", i, len);
 		if (len != i)
 			return (1);
 		j++;
@@ -31,27 +30,55 @@ int	len_lines(t_map *map)
 	return (0);
 }
 
-int	checker_map(t_map *map)
+int	check_border_up_right(t_map *map)
 {
-	if (len_lines(map))
-	{
-		ft_free_matrix(map);
-		exit(0);
-		return (1);
-	}
 	while (map->y < (map->columns - 1))
 	{
 		if (map->matrix[map->x][map->y] != '1')
 			return (1);
-		if (map->matrix[map->x][map->y] == '\n')
-			break ;
 		map->y++;
 	}
-	exit(0);
-	while (map->x < map->lines)
+	while (map->x < (map->lines - 1))
 	{
 		if (map->matrix[map->x][map->y] != '1')
 			return (1);
 		map->x++;
 	}
+	return (0);
+}
+
+int	check_border_down_left(t_map *map)
+{
+	while (map->y > 0)
+	{
+		if (map->matrix[map->x][map->y] != '1')
+			return (1);
+		map->y--;
+	}
+	while (map->x > 0)
+	{
+		if (map->matrix[map->x][map->y] != '1')
+			return (1);
+		map->x--;
+	}
+	return (0);
+}
+
+int	check_main_char(t_map *map)
+{
+	map->x = map->pers->x;
+	map->y = map->pers->y;
+	if (map)
+}
+
+int	checker_map(t_map *map)
+{
+	if (len_lines(map))
+		return (ft_printf("wrong line lenght\n"), 1);
+	if (check_border_up_right(map) ||
+		check_border_down_left(map))
+		return (ft_printf("Wrong borders\n") ,1);
+	if (che_main_char(map) || check_exit(map))
+		return (ft_printf("Problems in the story\n"));
+	exit(0);
 }

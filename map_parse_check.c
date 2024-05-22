@@ -20,6 +20,7 @@ void	print_map(char **matrix)
 	while (matrix[i])
 	{
 		ft_printf(matrix[i]);
+		ft_printf("\n");
 		i++;
 	}
 }
@@ -29,9 +30,9 @@ int	mem_matrix_fd(char *str, t_map *map)
 	int	fd;
 
 	fd = 0;
-	if (map->game_exit != 1)
+	if (map->exit->one != 1)
 		return (-1);
-	if (map->main_char != 1)
+	if (map->pers->one != 1)
 		return (-1);
 	map->matrix = (char **)ft_calloc(sizeof(char *), (map->lines + 1));
 	if (!map->matrix)
@@ -65,27 +66,16 @@ int	check_components(char *str, t_map *map)
 	{
 		map->matrix[i] = get_next_line(fd);
 		if (!map->matrix[i])
-		{
-			close(fd);
-			ft_free_matrix(map);
-			return (1);
-		}
+			return (ft_free_matrix(map), close(fd), 1);
 		if (map->matrix[i][ft_strlen(map->matrix[i]) - 1] != '\n')
-		{
-			print_map(map->matrix);
-			close(fd);
-			ft_free_matrix(map);
-		}
+			return (ft_free_matrix(map), close(fd), 1);
 		map->matrix[i] = ft_strtrim(map->matrix[i], "\n");
-		// if (ft_strlen(map->matrix[i]) > 0 &&
-		// 	map->matrix[i][ft_strlen(map->matrix[i]) - 1] == '\n')
-		// 	map->matrix[i][ft_strlen(map->matrix[i]) - 1] = 0;
 		i++;
 	}
 	map->matrix[i] = NULL;
 	close(fd);
 	if (checker_map(map))
-		return (1);
+		return (ft_free_matrix(map), 1);
 	return (0);
 }
 
@@ -101,9 +91,9 @@ int	check_char_map(char *str, t_map *map)
 			&& str[i] != 'C' && str[i] != '\n')
 			return (1);
 		if (str[i] == 'P')
-			map->main_char++;
+			add_value_pers(map, i);
 		if (str[i] == 'E')
-			map->game_exit++;
+			add_value_exit(map, i);
 		if (str[i] == 'C')
 			map->collect++;
 		i++;

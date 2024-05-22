@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   pers_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:04:05 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/17 15:55:04 by lofiorin         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:04:38 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// TODO: conditional jump ma da capire
-
-void	ft_free_matrix(t_map *map)
+void	add_value_pers(t_map *map, int i)
 {
-	int	i;
-
-	i = 0;
-	while (map->matrix[i] != NULL)
-	{
-		free(map->matrix[i]);
-		map->matrix[i] = NULL;
-		i++;
-	}
-	free(map->matrix);
-	map->matrix = NULL;
-	map = (t_map *){0};
-	ft_printf("Problems creating the map\n");
-	exit(0);
+	map->pers->one++;
+	map->pers->y = i;
+	map->pers->x = map->lines;
 }
