@@ -8,18 +8,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-typedef struct s_map
-{
-	char	**matrix;
-	t_pers	*pers;
-	t_exit	*exit;
-	int		lines;
-	int		columns;
-	int		x;
-	int		y;
-	int		collect;
-}				t_map;
-
 typedef struct s_pers
 {
 	int		x;
@@ -34,6 +22,26 @@ typedef struct s_exit
 	int		one;
 }				t_exit;
 
+typedef struct s_Cs
+{
+	int		x;
+	int		y;
+	int		num;
+}				t_Cs;
+
+typedef struct s_map
+{
+	char	**matrix;
+	t_pers	*pers;
+	t_exit	*exit;
+	int		lines;
+	int		columns;
+	int		x;
+	int		y;
+	int		collect;
+	t_Cs	**coll_s;
+}				t_map;
+
 int		check_components(char *str, t_map *map);
 int		ft_is_ber(char *str, int len, char *ext);
 int		args_check(char *str);
@@ -41,6 +49,8 @@ int		check_char_map(char *str, t_map *map);
 int		square_char_check(char *str, t_map *map);
 void	ft_free_matrix(t_map *map);
 int		checker_map(t_map *map);
+int		check_main_char(t_map *map);
+int		check_exit(t_map *map);
 int		len_lines(t_map *map);
 void	add_value_exit(t_map *map, int i);
 void	add_value_pers(t_map *map, int i);

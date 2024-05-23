@@ -64,13 +64,6 @@ int	check_border_down_left(t_map *map)
 	return (0);
 }
 
-int	check_main_char(t_map *map)
-{
-	map->x = map->pers->x;
-	map->y = map->pers->y;
-	if (map)
-}
-
 int	checker_map(t_map *map)
 {
 	if (len_lines(map))
@@ -78,7 +71,9 @@ int	checker_map(t_map *map)
 	if (check_border_up_right(map) ||
 		check_border_down_left(map))
 		return (ft_printf("Wrong borders\n") ,1);
-	if (che_main_char(map) || check_exit(map))
+	if (check_main_char(map) || check_exit(map))
 		return (ft_printf("Problems in the story\n"));
+	// if (check_collect(map))
+	// 	return (ft_printf("C isn't reachable\n"));
 	exit(0);
 }

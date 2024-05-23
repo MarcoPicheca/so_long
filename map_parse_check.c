@@ -129,6 +129,9 @@ int		square_char_check(char *str, t_map *map)
 	}
 	if (matrix)
 		free(matrix);
+	if (map->pers->one != 1 || map->exit->one != 1 ||
+		map->collect <= 0)
+		return (ft_printf("Something is miss\n"), 1);
 	close(fd);
 	return(0);
 }

@@ -2,21 +2,12 @@
 
 /*
  * TODO: 
- * - check sul personaggio contorni x + 1, x - 1, 
- * 		y + 1, y - 1
- * - check sull'uscita contorni x + 1, x - 1, 
- * 		y + 1, y - 1
- * - check su linee e colonne della mappa che non
- * 		possono essere tutte composte da 1 tranne
- * 		le prime e le ultime.
- * 		NB. controlla nel subject che ammenochè non
- * 		separino coll o exit o pers dal resto se possono esserci
- * 		ex.
- * 		111111111111
- * 		111111111111	corretta o no?
- * 		1000000000P1
- * 		1E0000000C01
- * 		111111111111
+ * - controllo sulla raggiungibilità di ogni componente base
+ * 		della mappa, quindi P deve poter raggiungere ogni C e
+ * 		l'uscita
+ * - creazione della memoria per i C e il puntatore a struct
+ * 		che permetta di rintracciare la posix di ogni collectible
+ * 	
  * 
 */
 
@@ -31,6 +22,8 @@ int	main(int ac, char **av)
 	map = (t_map){0};
 	pers = (t_pers){0};
 	exit = (t_exit){0};
+	map.pers = &pers;
+	map.exit = &exit;
 	args_check(av[1]);
 	if (square_char_check(av[1], &map) ||
 		map.columns == map.lines || check_components(av[1], &map))

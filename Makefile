@@ -2,7 +2,7 @@ NAME = so_long
 
 SRC	= main.c \
 	  map_parse_check.c \
-	  exit_xhexk.c \
+	  exit_check.c \
 	  pers_check.c \
 	  args_check.c \
 	  free_utils.c \
