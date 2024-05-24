@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:00:52 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/17 16:16:01 by lofiorin         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:50:54 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,19 +119,20 @@ int		square_char_check(char *str, t_map *map)
 	{
 		if (matrix && check_char_map(matrix, map))
 		{
-			free(matrix);
-			close(fd);
-			return (1);
+			ft_printf("Wrong char in the map\n");
+			return (free(matrix), close(fd), 1);
 		}
 		free(matrix);
 		matrix = get_next_line(fd);
 		map->lines++;
 	}
+	close(fd);
 	if (matrix)
 		free(matrix);
 	if (map->pers->one != 1 || map->exit->one != 1 ||
 		map->collect <= 0)
-		return (ft_printf("Something is miss\n"), 1);
-	close(fd);
+		return (ft_printf("Missed char\n"), 1);
+	if (map->columns == map->lines)
+		return (ft_printf("Square map\n"), 1);
 	return(0);
 }

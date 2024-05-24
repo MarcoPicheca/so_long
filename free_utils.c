@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lofiorin <lofiorin@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:04:05 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/17 15:55:04 by lofiorin         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:15:54 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_free_matrix(t_map *map)
 	int	i;
 
 	i = 0;
+	if (!map->matrix)
+		return ;
 	while (map->matrix[i] != NULL)
 	{
 		free(map->matrix[i]);
@@ -28,6 +30,23 @@ void	ft_free_matrix(t_map *map)
 	free(map->matrix);
 	map->matrix = NULL;
 	map = (t_map *){0};
-	ft_printf("Problems creating the map\n");
-	exit(0);
+	ft_printf("Matrix free 1\n");
+}
+
+void	free_matrix(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i++;
+	}
+	free(map);
+	map = NULL;
+	ft_printf("Matrix free 2\n");
 }

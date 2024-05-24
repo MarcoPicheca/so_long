@@ -22,13 +22,6 @@ typedef struct s_exit
 	int		one;
 }				t_exit;
 
-typedef struct s_Cs
-{
-	int		x;
-	int		y;
-	int		num;
-}				t_Cs;
-
 typedef struct s_map
 {
 	char	**matrix;
@@ -39,7 +32,6 @@ typedef struct s_map
 	int		x;
 	int		y;
 	int		collect;
-	t_Cs	**coll_s;
 }				t_map;
 
 int		check_components(char *str, t_map *map);
@@ -56,6 +48,10 @@ void	add_value_exit(t_map *map, int i);
 void	add_value_pers(t_map *map, int i);
 int		check_border_up_right(t_map *map);
 int		check_border_down_left(t_map *map);
+char	**copy_map(t_map *map);
+int		flood_fill(char **map, int p_x, int p_y);
+void	fill_visit(char **map, int p_x, int p_y);
+void	free_matrix(char **map);
 void	print_map(char **matrix);
 
 #endif

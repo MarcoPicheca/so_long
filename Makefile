@@ -7,6 +7,7 @@ SRC	= main.c \
 	  args_check.c \
 	  free_utils.c \
 	  check_map.c \
+	  algo_flood_fill.c \
 
 OBJ = $(SRC:.c=.o)
 

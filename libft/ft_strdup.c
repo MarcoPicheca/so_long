@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpicheca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:16:30 by mpicheca          #+#    #+#             */
-/*   Updated: 2022/11/08 14:42:00 by mpicheca         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:16:35 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 		return (NULL);
 	if (s)
 	{
-		newstr = (char *)malloc(ft_strlen(s) + 1);
+		newstr = (char *)ft_calloc2(ft_strlen(s) + 1, sizeof(char));
 		ft_strlcpy(newstr, s, ft_strlen(s) + 1);
 	}
 	else

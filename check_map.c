@@ -6,7 +6,7 @@
 /*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:00:52 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/12 19:24:38 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:19:49 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,42 @@ int	check_border_down_left(t_map *map)
 	return (0);
 }
 
+char	**copy_map(t_map *map)
+{
+	char	**copy;
+	int		i;
+
+	i = 0;
+	copy = (char **)ft_calloc2((map->lines + 1), sizeof(char *));
+	if (!copy)
+		return (NULL);
+	copy[map->lines] = NULL;
+	while (map->matrix[i] != NULL)
+	{
+		copy[i] = ft_strdup(map->matrix[i]);
+		if (!copy[i])
+			return (free_matrix(copy), NULL);
+		i++;
+	}
+	return (copy);
+}
+
 int	checker_map(t_map *map)
 {
+	char	**map_copy;
+
+	map_copy = NULL;
 	if (len_lines(map))
 		return (ft_printf("wrong line lenght\n"), 1);
 	if (check_border_up_right(map) ||
 		check_border_down_left(map))
 		return (ft_printf("Wrong borders\n") ,1);
 	if (check_main_char(map) || check_exit(map))
-		return (ft_printf("Problems in the story\n"));
-	// if (check_collect(map))
-	// 	return (ft_printf("C isn't reachable\n"));
-	exit(0);
+		return (ft_printf("Problems in the story\n"), 1);
+	map_copy = copy_map(map);
+	if (!map_copy)
+		return (1);
+	if (flood_fill(map_copy, map->pers->x, map->pers->y))
+		return (ft_printf("failed flood\n"), 1);
+	return (0);
 }

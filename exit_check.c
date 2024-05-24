@@ -6,7 +6,7 @@
 /*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:04:05 by mapichec          #+#    #+#             */
-/*   Updated: 2024/05/12 18:04:38 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/05/24 10:46:22 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	add_value_exit(t_map *map, int i)
 	map->exit->y = i;
 	map->exit->x = map->lines;
 }
-
 
 int	check_exit(t_map *map)
 {
