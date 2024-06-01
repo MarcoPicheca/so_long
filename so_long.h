@@ -6,17 +6,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-#define WIN_SIZE 50
+# define RED '\033[31m'
 
-typedef struct s_pers
-{
-	int		x;
-	int		y;
-	int		one;	void	*img;
-
-}				t_pers;
-
-typedef struct s_img_p
+typedef struct s_sprite
 {
 	void	*pers_0;
 	void	*pers_1;
@@ -25,15 +17,23 @@ typedef struct s_img_p
 	void	*pers_4;
 	void	*pers_5;
 	void	*pers_6;
-}				t_img_p;
+}				t_sprite;
 
+typedef struct s_pers
+{
+	int			x;
+	int			y;
+	int			one;	
+	void		*img;
+	t_sprite	*act;
+}				t_pers;
 
 typedef struct s_exit
 {
 	int		x;
 	int		y;
 	void	*img_1;
-	t_img_p	*loop_img;
+	void	*img_2;
 	int		one;
 }				t_exit;
 
@@ -44,6 +44,7 @@ typedef struct s_map
 	void	*win_mlx;
 	void	*floor;
 	void	*wall;
+	void	*badge;
 	t_pers	*pers;
 	t_exit	*exit;
 	int		lines;
@@ -73,5 +74,12 @@ void	fill_visit(char **map, int p_x, int p_y);
 void	free_matrix(char **map);
 void	print_map(char **matrix);
 void	*game_start(t_map *map);
+void	free_sprites_p(t_sprite *act, void *mlx_ptr);
+void	free_window(t_map *map);
+void	*game_start(t_map *map);
+void	images_to_wndw(t_map *map);
+void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i);
+void	exit_free(t_map *map);
+int		loop_player(t_map *map);
 
 #endif
