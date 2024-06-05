@@ -33,52 +33,23 @@ void	ft_free_matrix(t_map *map)
 	ft_printf("Matrix free 1\n");
 }
 
-void	free_sprites_p(t_sprite *act, void *mlx_ptr)
-{
-	if (act->pers_0)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_1)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_2)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_3)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_4)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_5)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-	if (act->pers_6)
-		mlx_destroy_image(mlx_ptr, act->pers_0);
-}
-
 void	free_sprites(t_map *map)
 {
 	if (map->badge)
-		mlx_destroy_image(map->mlx_ptr,
-		map->badge);
-	if (map->floor)
-		mlx_destroy_image(map->mlx_ptr,
-		map->floor);
+		mlx_destroy_image(map->mlx_ptr,map->badge);
 	if (map->wall)
-		mlx_destroy_image(map->mlx_ptr,
-		map->wall);
+		mlx_destroy_image(map->mlx_ptr,map->wall);
+	if (map->floor)
+		mlx_destroy_image(map->mlx_ptr,map->floor);
 	if (map->exit->img_1)
-		mlx_destroy_image(map->mlx_ptr,
-		map->exit->img_1);
+		mlx_destroy_image(map->mlx_ptr,map->exit->img_1);
 	if (map->exit->img_2)
-		mlx_destroy_image(map->mlx_ptr,
-		map->exit->img_2);
-}
-
-void	exit_free(t_map *map)
-{
-	free_window(map);
-	exit(0);
+		mlx_destroy_image(map->mlx_ptr,map->exit->img_2);
 }
 
 void	free_window(t_map *map)
 {
-	free_sprites_p(map->pers->act, map->mlx_ptr);
+	free_act(map->pers->act);
 	free_sprites(map);
 	if (map->win_mlx)
 		mlx_destroy_window(map->mlx_ptr, map->win_mlx);
@@ -104,4 +75,22 @@ void	free_matrix(char **map)
 	free(map);
 	map = NULL;
 	ft_printf("Matrix free 2\n");
+}
+
+void	free_act(void **act)
+{
+	int	i;
+
+	i = 0;
+	if (!act)
+		return ;
+	while (act[i] != NULL)
+	{
+		free(act[i]);
+		act[i] = NULL;
+		i++;
+	}
+	free(act);
+	act = NULL;
+	ft_printf("Matrix free void\n");
 }

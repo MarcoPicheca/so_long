@@ -12,8 +12,9 @@
 
 #include "so_long.h"
 
-void	exit_free(t_map *map)
+int	exit_free(t_map *map)
 {
 	free_window(map);
 	exit(0);
+	return (0);
 }
