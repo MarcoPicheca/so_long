@@ -54,6 +54,11 @@ int	convert_sprites(t_map *map)
 	return (0);	
 }
 
+// int	key_hook(t_map)
+// {
+
+// }
+
 void	*game_start(t_map *map)
 {
 	map->mlx_ptr = mlx_init();
@@ -67,6 +72,7 @@ void	*game_start(t_map *map)
 		return (free_window(map), NULL);
 	images_to_wndw(map);
 	mlx_hook(map->win_mlx, 17, 1L<<17, &exit_free, map);
+	// mlx_key_hook(map->win_mlx, *key_hook, map);
 	mlx_loop_hook(map->mlx_ptr, *loop_player, map);
 	mlx_loop(map->mlx_ptr);
 	return (NULL);
@@ -74,12 +80,13 @@ void	*game_start(t_map *map)
 
 /*
  * TODO: 
- * tutto da provare
+ * - Tutto da provare
  * 
- * creare i key press
+ * - Creare i key press
  * 
- * creare loop di gioco per le mosse del player e i vari eventi
+ * - Creare le mosse del player e i vari eventi
  * 
+ * - Creare i casi di fine del gioco
  * 
 */
 

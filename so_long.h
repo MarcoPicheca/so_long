@@ -38,6 +38,7 @@ typedef struct s_map
 	t_exit	*exit;
 	int		lines;
 	int		columns;
+	int		flag_end;
 	int		x;
 	int		y;
 	int		collect;

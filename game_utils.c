@@ -14,28 +14,18 @@
 
 int	loop_player(t_map *map)
 {
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[0], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[1], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[2], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[3], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[4], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[5], map->pers->x, map->pers->y);
-	usleep(1000);
-	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx,
-		map->pers->act[6], map->pers->x, map->pers->y);
-	usleep(1000);
-	return(0);
+	static int	i = 0;
+
+	while (!map->flag_end && i < 7)
+	{
+		if (i == 6)
+			i = 0;
+		put_image(map->mlx_ptr, map->win_mlx, map->pers->act[i]
+			map->pers->x, map->pers->y)
+		i++;
+		usleep(30000);
+	}
+	return (0);
 }
 
 void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i)
