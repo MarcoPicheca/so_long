@@ -6,23 +6,22 @@
 /*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:54:33 by mapichec          #+#    #+#             */
-/*   Updated: 2024/06/01 19:55:52 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:16:26 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 int	loop_player(t_map *map)
 {
-	static int	i = 0;
+	static unsigned long	i = 0;
 
-	while (!map->flag_end && i < 7)
+	if (!map->flag_end)
 	{
 		if (i == 6)
 			i = 0;
-		put_image(map->mlx_ptr, map->win_mlx, map->pers->act[i]
-			map->pers->x, map->pers->y)
-		i++;
+		++i;
+		put_image(map->mlx_ptr, map->win_mlx, map->pers->act[i],
+			map->pers->x, map->pers->y);
 		usleep(30000);
 	}
 	return (0);

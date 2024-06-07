@@ -1,6 +1,12 @@
 {
 	"files.associations": {
 		"so_long.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"mman.h": "c",
+		"xlib.h": "c",
+		"xutil.h": "c",
+		"xkblib.h": "c",
+		"mlx.h": "c",
+		"mlx_int.h": "c"
 	}
 }

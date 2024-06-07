@@ -22,11 +22,7 @@ void	**convert_pers(void *mlx_ptr)
 	"./pers/pers_6.xpm", &i, &i);
 	if (!act[0] || !act[1] || !act[2] ||
 		!act[3] || !act[4] || !act[5] || !act[6])
-	{
-		ft_printf("0 %p, 1 %p, 2 %p, 3 %p, 4 %p, 5%p , 6 %p\n", act[0], act[1], 
-		act[2], act[3], act[4], act[5], act[6]);
 		return (free_act(act), NULL);
-	}
 	return (act);
 }
 
@@ -54,9 +50,12 @@ int	convert_sprites(t_map *map)
 	return (0);	
 }
 
-// int	key_hook(t_map)
+// int	key_hook(t_map *map, int key)
 // {
-
+// 	if (!map->flag_end)
+// 	{
+// 		if (key == 53)
+// 	}
 // }
 
 void	*game_start(t_map *map)
@@ -65,16 +64,13 @@ void	*game_start(t_map *map)
 	if (!map->mlx_ptr)
 		return (free_matrix(map->matrix), NULL);
 	if (convert_sprites(map))
-		return (free_window(map), NULL);
+		return (free_window(map), NULL);	
 	map->win_mlx = mlx_new_window(map->mlx_ptr,
 		(50 * map->columns), (50 * map->lines), "so_long");
 	if (!map->win_mlx)
 		return (free_window(map), NULL);
 	images_to_wndw(map);
-	mlx_hook(map->win_mlx, 17, 1L<<17, &exit_free, map);
 	// mlx_key_hook(map->win_mlx, *key_hook, map);
-	mlx_loop_hook(map->mlx_ptr, *loop_player, map);
-	mlx_loop(map->mlx_ptr);
 	return (NULL);
 }
 
@@ -109,5 +105,8 @@ int	main(int ac, char **av)
 		return(ft_printf("Error\nproblems in the map\n"), 0);
 	if (game_start(&map))
 		return(ft_printf("Error\nproblems with Xserver\n"), 0);
+	mlx_hook(map.win_mlx, 17, (1L<<17), exit_free, &map);
+	mlx_loop_hook(map.mlx_ptr, loop_player, &map);
+	mlx_loop(map.mlx_ptr);
 	return (0);
 }

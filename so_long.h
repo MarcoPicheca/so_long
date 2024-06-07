@@ -3,6 +3,7 @@
 # include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
+#include "./minilibx-linux/mlx_int.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
