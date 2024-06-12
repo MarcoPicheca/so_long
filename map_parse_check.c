@@ -51,7 +51,6 @@ int	mem_matrix_fd(char *str, t_map *map)
  * 
 */
 
-// TODO: guardare i casi in cui la mappa non ha linee lunghe uguali
 int	check_components(char *str, t_map *map)
 {
 	int	i;

@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c		                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/12 18:04:05 by mapichec          #+#    #+#             */
+/*   Updated: 2024/06/01 19:53:02 by mapichec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	**convert_pers(void *mlx_ptr)
 {
-	static int	i = 50;
-	void		**act;
+	int		i;
+	void	**act;
 
+	i = 50;
 	act = (void **)ft_calloc(7 , sizeof(void *));
 	act[0] = mlx_xpm_file_to_image(mlx_ptr,
 	"./pers/pers_0.xpm", &i, &i);
@@ -20,16 +33,14 @@ void	**convert_pers(void *mlx_ptr)
 	"./pers/pers_5.xpm", &i, &i);
 	act[6] = mlx_xpm_file_to_image(mlx_ptr,
 	"./pers/pers_6.xpm", &i, &i);
-	if (!act[0] || !act[1] || !act[2] ||
-		!act[3] || !act[4] || !act[5] || !act[6])
-		return (free_act(act), NULL);
 	return (act);
 }
 
 int	convert_sprites(t_map *map)
 {
-	static int i = 50;
+	int i;
 
+	i = 50;
 	map->pers->act = convert_pers(map->mlx_ptr);
 	if (!map->pers->act)
 		return (1);
@@ -43,20 +54,27 @@ int	convert_sprites(t_map *map)
 	"./textures/exit.xpm", &i, &i);
 	map->exit->img_2 = mlx_xpm_file_to_image(map->mlx_ptr,
 	"./textures/exit_2.xpm", &i, &i);
-	if (!map->badge || !map->floor ||
-		!map->floor || !map->exit->img_1 ||
-		!map->exit->img_2)
-		return (1);
 	return (0);	
 }
 
-// int	key_hook(t_map *map, int key)
-// {
-// 	if (!map->flag_end)
-// 	{
-// 		if (key == 53)
-// 	}
-// }
+int	key_hook(int key, t_map *map)
+{
+	if (!map->flag_end)
+	{
+		printf("key hook %d\n", key);
+		if (key == K_ESC)
+			return(free_window(map), 0);
+		if (key == K_A)
+			move_left(map);
+		if (key == K_S)
+			move_down(map);
+		if (key == K_D)
+			move_right(map);
+		if (key == K_W)
+			move_up(map);
+	}
+	return (0);
+}
 
 void	*game_start(t_map *map)
 {
@@ -64,13 +82,16 @@ void	*game_start(t_map *map)
 	if (!map->mlx_ptr)
 		return (free_matrix(map->matrix), NULL);
 	if (convert_sprites(map))
-		return (free_window(map), NULL);	
+		return (free_window(map), NULL);
 	map->win_mlx = mlx_new_window(map->mlx_ptr,
 		(50 * map->columns), (50 * map->lines), "so_long");
 	if (!map->win_mlx)
 		return (free_window(map), NULL);
 	images_to_wndw(map);
-	// mlx_key_hook(map->win_mlx, *key_hook, map);
+	mlx_hook(map->win_mlx, 17, (1L<<17), exit_free, map);
+	mlx_key_hook(map->win_mlx, *key_hook, map);
+	mlx_loop_hook(map->mlx_ptr, loop_player, map);
+	mlx_loop(map->mlx_ptr);
 	return (NULL);
 }
 
@@ -105,8 +126,5 @@ int	main(int ac, char **av)
 		return(ft_printf("Error\nproblems in the map\n"), 0);
 	if (game_start(&map))
 		return(ft_printf("Error\nproblems with Xserver\n"), 0);
-	mlx_hook(map.win_mlx, 17, (1L<<17), exit_free, &map);
-	mlx_loop_hook(map.mlx_ptr, loop_player, &map);
-	mlx_loop(map.mlx_ptr);
 	return (0);
 }

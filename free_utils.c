@@ -21,7 +21,7 @@ void	ft_free_matrix(t_map *map)
 	i = 0;
 	if (!map->matrix)
 		return ;
-	while (map->matrix[i] != NULL)
+	while (map->matrix[i] != NULL && i < map->lines)
 	{
 		free(map->matrix[i]);
 		map->matrix[i] = NULL;
@@ -31,32 +31,6 @@ void	ft_free_matrix(t_map *map)
 	map->matrix = NULL;
 	map = (t_map *){0};
 	ft_printf("Matrix free 1\n");
-}
-
-void	free_sprites(t_map *map)
-{
-	if (map->badge)
-		mlx_destroy_image(map->mlx_ptr,map->badge);
-	if (map->wall)
-		mlx_destroy_image(map->mlx_ptr,map->wall);
-	if (map->floor)
-		mlx_destroy_image(map->mlx_ptr,map->floor);
-	if (map->exit->img_1)
-		mlx_destroy_image(map->mlx_ptr,map->exit->img_1);
-	if (map->exit->img_2)
-		mlx_destroy_image(map->mlx_ptr,map->exit->img_2);
-}
-
-void	free_window(t_map *map)
-{
-	free_act(map->pers->act);
-	free_sprites(map);
-	if (map->win_mlx)
-		mlx_destroy_window(map->mlx_ptr, map->win_mlx);
-	if (map->mlx_ptr)
-		mlx_destroy_display(map->mlx_ptr);
-	if (map->matrix)
-		free_matrix(map->matrix);
 }
 
 void	free_matrix(char **map)
@@ -75,22 +49,4 @@ void	free_matrix(char **map)
 	free(map);
 	map = NULL;
 	ft_printf("Matrix free 2\n");
-}
-
-void	free_act(void **act)
-{
-	int	i;
-
-	i = 0;
-	if (!act)
-		return ;
-	while (act[i] != NULL)
-	{
-		free(act[i]);
-		act[i] = NULL;
-		i++;
-	}
-	free(act);
-	act = NULL;
-	ft_printf("Matrix free void\n");
 }

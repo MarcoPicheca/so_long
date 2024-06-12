@@ -8,13 +8,18 @@
 # include <unistd.h>
 # include <fcntl.h>
 # define RED '\033[31m'
+# define DELAY 10000000
+# define K_W 119
+# define K_A 97
+# define K_S 115
+# define K_D 100
+# define K_ESC 65307
 
 typedef struct s_pers
 {
 	int		x;
 	int		y;
-	int		one;	
-	void	*img;
+	int		one;
 	void	**act;
 }				t_pers;
 
@@ -62,12 +67,12 @@ int		check_border_down_left(t_map *map);
 char	**copy_map(t_map *map);
 int		flood_fill(char **map, int p_x, int p_y);
 void	fill_visit(char **map, int p_x, int p_y);
+void	ft_free_matrix(t_map *map);	
 void	free_matrix(char **map);
-void	free_act(void **act);
+void	free_act(t_map *map);
 void	free_window(t_map *map);
 void	free_sprites(t_map *map);
 void	print_map(char **matrix);
-void	*game_start(t_map *map);
 void	*game_start(t_map *map);
 void	images_to_wndw(t_map *map);
 void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i);
@@ -75,5 +80,9 @@ int		exit_free(t_map *map);
 int		loop_player(t_map *map);
 void	**convert_pers(void *mlx_ptr);
 int		convert_sprites(t_map *map);
+void	move_left(t_map *map);
+void	move_right(t_map *map);
+void	move_up(t_map *map);
+void	move_down(t_map *map);
 
 #endif

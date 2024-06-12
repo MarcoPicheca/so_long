@@ -11,18 +11,25 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	delay_frame(int del)
+{
+	while (del > 0)
+		del--;
+}
+
 int	loop_player(t_map *map)
 {
-	static unsigned long	i = 0;
+	static int	i = 0;
 
 	if (!map->flag_end)
 	{
 		if (i == 6)
 			i = 0;
-		++i;
 		put_image(map->mlx_ptr, map->win_mlx, map->pers->act[i],
-			map->pers->x, map->pers->y);
-		usleep(30000);
+			map->pers->y, map->pers->x);
+		i++;
+		delay_frame(DELAY);
 	}
 	return (0);
 }
@@ -37,9 +44,11 @@ void	images_to_wndw(t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i < map->lines)
+	static int c = 0;
+	printf("%u\n", c++);
+	while (++i < map->lines)
 	{
 		while (j < map->columns)
 		{
@@ -51,11 +60,12 @@ void	images_to_wndw(t_map *map)
 				put_image(map->mlx_ptr, map->win_mlx, map->pers->act[0], j, i);
 			if (map->matrix[i][j] == 'C')
 				put_image(map->mlx_ptr, map->win_mlx, map->badge, j, i);
-			if (map->matrix[i][j] == 'E')
+			if (map->matrix[i][j] == 'E' && map->collect != 0)
 				put_image(map->mlx_ptr, map->win_mlx, map->exit->img_1, j, i);
+			if (map->matrix[i][j] == 'E' && map->collect == 0)
+				put_image(map->mlx_ptr, map->win_mlx, map->exit->img_2, j, i);
 			j++;
 		}
 		j = 0;
-		i++;		
 	}
 }

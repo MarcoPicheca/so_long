@@ -9,6 +9,7 @@ SRC	= main.c \
 	  check_map.c \
 	  algo_flood_fill.c \
 	  game_free_utils.c \
+	  moves.c \
 	  game_utils.c \
 
 OBJ = $(SRC:.c=.o)
