@@ -45,11 +45,9 @@ void	images_to_wndw(t_map *map)
 	int	j;
 
 	i = -1;
-	j = 0;
-	static int c = 0;
-	printf("%u\n", c++);
-	while (++i < map->lines)
+	while (++i < map->lines && !map->flag_end)
 	{
+		j = 0;
 		while (j < map->columns)
 		{
 			if (map->matrix[i][j] == '1')
@@ -66,6 +64,5 @@ void	images_to_wndw(t_map *map)
 				put_image(map->mlx_ptr, map->win_mlx, map->exit->img_2, j, i);
 			j++;
 		}
-		j = 0;
 	}
 }

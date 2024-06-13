@@ -8,11 +8,17 @@
 # include <unistd.h>
 # include <fcntl.h>
 # define RED '\033[31m'
+# define RED_HEX 0xff0000
+# define WHITE_HEX 0xffffff
 # define DELAY 10000000
 # define K_W 119
 # define K_A 97
 # define K_S 115
 # define K_D 100
+# define K_UP 65362
+# define K_LEFT 65361
+# define K_DOWN 65364
+# define K_RIGHT 65363
 # define K_ESC 65307
 
 typedef struct s_pers

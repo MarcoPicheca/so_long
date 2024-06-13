@@ -59,19 +59,24 @@ int	convert_sprites(t_map *map)
 
 int	key_hook(int key, t_map *map)
 {
-	if (!map->flag_end)
+	static int	i = -1;
+
+	i++;
+	ft_printf("key hook %d, moves n %d\n", key, i);
+	if (key == K_ESC)
+		return(free_window(map), 0);
+	if (key == K_A || key == K_LEFT)
+		move_left(map);
+	if (key == K_S || key == K_DOWN)
+		move_down(map);
+	if (key == K_D || key == K_RIGHT)
+		move_right(map);
+	if (key == K_W || key == K_UP)
+		move_up(map);
+	if (map->flag_end)
 	{
-		printf("key hook %d\n", key);
-		if (key == K_ESC)
-			return(free_window(map), 0);
-		if (key == K_A)
-			move_left(map);
-		if (key == K_S)
-			move_down(map);
-		if (key == K_D)
-			move_right(map);
-		if (key == K_W)
-			move_up(map);
+		mlx_clear_window(map->mlx_ptr, map->win_mlx);
+		mlx_string_put(map->mlx_ptr, map->win_mlx, (map->columns / 2 * 50), (map->lines / 2 * 50), WHITE_HEX, "YOU WON! Press x or ESC");
 	}
 	return (0);
 }

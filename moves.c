@@ -12,6 +12,11 @@
 
 #include "so_long.h"
 
+void	ft_win_game(t_map *map)
+{
+	map->flag_end = 1;
+}
+
 void	move_left(t_map *map)
 {
 	int	x;
@@ -23,10 +28,10 @@ void	move_left(t_map *map)
 		(map->matrix[x][y - 1] == 'E' &&
 		map->collect != 0))
 		return ;
-	// else if (map->matrix[x][y - 1] == 'E' &&
-	// 	!map->collect)
-	// 	ft_win_game(map);
-	if (map->matrix[x][y - 1] == 'C' ||
+	else if (map->matrix[x][y - 1] == 'E' &&
+		!map->collect)
+		ft_win_game(map);
+	else if (map->matrix[x][y - 1] == 'C' ||
 		map->matrix[x][y - 1] == '0')
 	{
 		if (map->matrix[x][y - 1] == 'C')
@@ -50,10 +55,10 @@ void	move_right(t_map *map)
 		(map->matrix[x][y + 1] == 'E' &&
 		map->collect != 0))
 		return ;
-	// else if (map->matrix[x][y + 1] == 'E' &&
-	// 	!map->collect)
-	// 	ft_win_game(map);
-	if (map->matrix[x][y + 1] == 'C' ||
+	else if (map->matrix[x][y + 1] == 'E' &&
+		!map->collect)
+		ft_win_game(map);
+	else if (map->matrix[x][y + 1] == 'C' ||
 		map->matrix[x][y + 1] == '0')
 	{
 		if (map->matrix[x][y + 1] == 'C')
@@ -76,10 +81,10 @@ void	move_up(t_map *map)
 		(map->matrix[x - 1][y] == 'E' &&
 		map->collect != 0))
 		return ;
-	// else if (map->matrix[x - 1][y] == 'E' &&
-	// 	!map->collect)
-	// 	ft_win_game(map);
-	if (map->matrix[x - 1][y] == 'C' ||
+	else if (map->matrix[x - 1][y] == 'E' &&
+		!map->collect)
+		ft_win_game(map);
+	else if (map->matrix[x - 1][y] == 'C' ||
 		map->matrix[x - 1][y] == '0')
 	{
 		if (map->matrix[x - 1][y] == 'C')
@@ -102,10 +107,10 @@ void	move_down(t_map *map)
 		(map->matrix[x + 1][y] == 'E' &&
 		map->collect != 0))
 		return ;
-	// else if (map->matrix[x + 1][y] == 'E' &&
-	// 	!map->collect)
-	// 	ft_win_game(map);
-	if (map->matrix[x + 1][y] == 'C' ||
+	else if (map->matrix[x + 1][y] == 'E' &&
+		!map->collect)
+		ft_win_game(map);
+	else if (map->matrix[x + 1][y] == 'C' ||
 		map->matrix[x + 1][y] == '0')
 	{
 		if (map->matrix[x + 1][y] == 'C')
