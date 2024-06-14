@@ -27,7 +27,7 @@ int	check_main_char(t_map *map)
 		map->matrix[(map->x - 1)][map->y] == '1' &&
 		map->matrix[map->x][(map->y - 1)] == '1' &&
 		map->matrix[map->x][(map->y + 1)] == '1')
-		return (ft_printf("P can't move\n"), 1);
+		return (1);
 	map->x = 0;
 	map->y = 0;
 	return (0);

@@ -12,19 +12,6 @@
 
 #include "so_long.h"
 
-void	print_map(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-	{
-		ft_printf(matrix[i]);
-		ft_printf("\n");
-		i++;
-	}
-}
-
 int	mem_matrix_fd(char *str, t_map *map)
 {
 	int	fd;
@@ -66,7 +53,8 @@ int	check_components(char *str, t_map *map)
 		map->matrix[i] = get_next_line(fd);
 		if (!map->matrix[i])
 			return (ft_free_matrix(map), close(fd), 1);
-		if (map->matrix[i][ft_strlen(map->matrix[i]) - 1] != '\n')
+		if (map->matrix[i][ft_strlen(map->matrix[i]) - 1] != '\n' &&
+			i < (map->lines - 1))
 			return (ft_free_matrix(map), close(fd), 1);
 		map->matrix[i] = ft_strtrim(map->matrix[i], "\n");
 		i++;
@@ -117,10 +105,7 @@ int		square_char_check(char *str, t_map *map)
 	while (matrix)
 	{
 		if (matrix && check_char_map(matrix, map))
-		{
-			ft_printf("Wrong char in the map\n");
 			return (free(matrix), close(fd), 1);
-		}
 		free(matrix);
 		matrix = get_next_line(fd);
 		map->lines++;
@@ -130,8 +115,8 @@ int		square_char_check(char *str, t_map *map)
 		free(matrix);
 	if (map->pers->one != 1 || map->exit->one != 1 ||
 		map->collect <= 0)
-		return (ft_printf("Missed char\n"), 1);
+		return (1);
 	if (map->columns == map->lines)
-		return (ft_printf("Square map\n"), 1);
+		return (1);
 	return(0);
 }

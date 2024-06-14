@@ -20,6 +20,7 @@
 # define K_DOWN 65364
 # define K_RIGHT 65363
 # define K_ESC 65307
+# define S_PUT_C map->columns / 2
 
 typedef struct s_pers
 {
@@ -78,7 +79,6 @@ void	free_matrix(char **map);
 void	free_act(t_map *map);
 void	free_window(t_map *map);
 void	free_sprites(t_map *map);
-void	print_map(char **matrix);
 void	*game_start(t_map *map);
 void	images_to_wndw(t_map *map);
 void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i);

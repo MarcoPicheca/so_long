@@ -31,7 +31,6 @@ int	flood_fill(char **map, int p_x, int p_y)
 	x = 0;
 	y = 0;
 	fill_visit(map, p_x, p_y);
-	// print_map(map);
 	while (map[x + 1] != NULL)
 	{
 		while (map[x][y] != '\0')

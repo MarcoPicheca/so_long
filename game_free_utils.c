@@ -40,7 +40,10 @@ void	free_window(t_map *map)
 	if (map->win_mlx)
 		mlx_destroy_window(map->mlx_ptr, map->win_mlx);
 	if (map->mlx_ptr)
+	{
 		mlx_destroy_display(map->mlx_ptr);
+		free(map->mlx_ptr);
+	}
 	if (map->matrix)
 		ft_free_matrix(map);
 	map = (t_map *){0};
@@ -62,5 +65,4 @@ void	free_act(t_map *map)
 	}
 	free(map->pers->act);
 	map->pers->act = NULL;
-	ft_printf("free map->pers->act %p\n", map->pers->act);
 }

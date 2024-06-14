@@ -90,16 +90,16 @@ int	checker_map(t_map *map)
 
 	map_copy = NULL;
 	if (len_lines(map))
-		return (ft_printf("wrong line lenght\n"), 1);
+		return (1);
 	if (check_border_up_right(map) ||
 		check_border_down_left(map))
-		return (ft_printf("Wrong borders\n") ,1);
+		return (1);
 	if (check_main_char(map) || check_exit(map))
-		return (ft_printf("Problems in the story\n"), 1);
+		return (1);
 	map_copy = copy_map(map);
 	if (!map_copy)
 		return (1);
 	if (flood_fill(map_copy, map->pers->x, map->pers->y))
-		return (ft_printf("failed flood\n"), 1);
+		return (1);
 	return (0);
 }

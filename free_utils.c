@@ -30,7 +30,6 @@ void	ft_free_matrix(t_map *map)
 	free(map->matrix);
 	map->matrix = NULL;
 	map = (t_map *){0};
-	ft_printf("Matrix free 1\n");
 }
 
 void	free_matrix(char **map)
@@ -48,5 +47,4 @@ void	free_matrix(char **map)
 	}
 	free(map);
 	map = NULL;
-	ft_printf("Matrix free 2\n");
 }
