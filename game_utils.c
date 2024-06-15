@@ -34,9 +34,10 @@ int	loop_player(t_map *map)
 	return (0);
 }
 
-void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i)
+void	put_image(t_map *map, void *img, int j, int i)
 {
-	mlx_put_image_to_window(mlx_ptr, win_mlx, img, (50 * j), (50 * i));
+	mlx_put_image_to_window(map->mlx_ptr, map->win_mlx, img,
+		(50 * j), (50 * i));
 }
 
 void	images_to_wndw(t_map *map)
@@ -51,17 +52,17 @@ void	images_to_wndw(t_map *map)
 		while (j < map->columns)
 		{
 			if (map->matrix[i][j] == '1')
-				put_image(map->mlx_ptr, map->win_mlx, map->wall, j, i);
+				put_image(map, map->wall, j, i);
 			if (map->matrix[i][j] == '0')
-				put_image(map->mlx_ptr, map->win_mlx, map->floor, j, i);
+				put_image(map, map->floor, j, i);
 			if (map->matrix[i][j] == 'P')
-				put_image(map->mlx_ptr, map->win_mlx, map->pers->act[0], j, i);
+				put_image(map, map->pers->act[0], j, i);
 			if (map->matrix[i][j] == 'C')
-				put_image(map->mlx_ptr, map->win_mlx, map->badge, j, i);
+				put_image(map, map->badge, j, i);
 			if (map->matrix[i][j] == 'E' && map->collect != 0)
-				put_image(map->mlx_ptr, map->win_mlx, map->exit->img_1, j, i);
+				put_image(map, map->exit->img_1, j, i);
 			if (map->matrix[i][j] == 'E' && map->collect == 0)
-				put_image(map->mlx_ptr, map->win_mlx, map->exit->img_2, j, i);
+				put_image(map, map->exit->img_2, j, i);
 			j++;
 		}
 	}

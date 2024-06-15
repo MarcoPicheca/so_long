@@ -28,16 +28,6 @@ int	mem_matrix_fd(char *str, t_map *map)
 	return (fd);
 }
 
-/*
- * Controlla che i componenti di base siano di un numero corretto
- * e alloca lo spazio necessario per raccogliere la matrice della mappa che verrà 
- * salvata in map.matrix per altri controlli su bordo, contorni di P e di E
- * e dei vari collectible.
- * Salverà ogni linea componente della mappa in ogni linea della matrice
- * per poi inviare la matrice al controllo.
- * 
-*/
-
 int	check_components(char *str, t_map *map)
 {
 	int	i;
@@ -90,12 +80,7 @@ int	check_char_map(char *str, t_map *map)
 	return (0);
 }
 
-/*
- * conta le linee e manda sia alla funzione per il check
- * dei caratteri componenti la mappa che alla funzione che
- * genera la matrice necessaria per la mappa
-*/
-int		square_char_check(char *str, t_map *map)
+int	square_char_check(char *str, t_map *map)
 {
 	char	*matrix;
 	int		fd;
@@ -113,10 +98,10 @@ int		square_char_check(char *str, t_map *map)
 	close(fd);
 	if (matrix)
 		free(matrix);
-	if (map->pers->one != 1 || map->exit->one != 1 ||
-		map->collect <= 0)
+	if (map->pers->one != 1 || map->exit->one != 1
+		|| map->collect <= 0)
 		return (1);
 	if (map->columns == map->lines)
 		return (1);
-	return(0);
+	return (0);
 }

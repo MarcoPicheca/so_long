@@ -76,9 +76,10 @@ int	key_hook(int key, t_map *map)
 	if (map->flag_end)
 	{
 		mlx_clear_window(map->mlx_ptr, map->win_mlx);
-		mlx_string_put(map->mlx_ptr, map->win_mlx, (S_PUT_C * 50),
+		mlx_string_put(map->mlx_ptr, map->win_mlx, (map->columns / 2 * 50),
 			(map->lines / 2 * 50), WHITE_HEX, "YOU WON!");
-		mlx_string_put(map->mlx_ptr, map->win_mlx, ((S_PUT_C - 1) * 50),
+		mlx_string_put(map->mlx_ptr, map->win_mlx,
+			((map->columns / 2 - 1) * 50),
 			((map->lines - 1) * 50), WHITE_HEX, "Press x or ESC to exit");
 	}
 	return (0);

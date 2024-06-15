@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h		                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/12 18:04:05 by mapichec          #+#    #+#             */
+/*   Updated: 2024/06/01 19:53:02 by mapichec         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
-#include "./minilibx-linux/mlx_int.h"
+# include "./minilibx-linux/mlx_int.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define RED '\033[31m'
 # define RED_HEX 0xff0000
 # define WHITE_HEX 0xffffff
 # define DELAY 10000000
@@ -20,7 +31,6 @@
 # define K_DOWN 65364
 # define K_RIGHT 65363
 # define K_ESC 65307
-# define S_PUT_C map->columns / 2
 
 typedef struct s_pers
 {
@@ -81,7 +91,7 @@ void	free_window(t_map *map);
 void	free_sprites(t_map *map);
 void	*game_start(t_map *map);
 void	images_to_wndw(t_map *map);
-void	put_image(void *mlx_ptr, void *win_mlx, void *img, int j, int i);
+void	put_image(t_map *map, void *img, int j, int i);
 int		exit_free(t_map *map);
 int		loop_player(t_map *map);
 void	**convert_pers(void *mlx_ptr);

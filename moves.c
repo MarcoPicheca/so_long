@@ -43,7 +43,6 @@ void	move_left(t_map *map)
 	images_to_wndw(map);
 }
 
-
 void	move_right(t_map *map)
 {
 	int	x;

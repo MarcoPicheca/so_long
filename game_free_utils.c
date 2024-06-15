@@ -22,15 +22,15 @@ int	exit_free(t_map *map)
 void	free_sprites(t_map *map)
 {
 	if (map->badge)
-		mlx_destroy_image(map->mlx_ptr,map->badge);
+		mlx_destroy_image(map->mlx_ptr, map->badge);
 	if (map->wall)
-		mlx_destroy_image(map->mlx_ptr,map->wall);
+		mlx_destroy_image(map->mlx_ptr, map->wall);
 	if (map->floor)
-		mlx_destroy_image(map->mlx_ptr,map->floor);
+		mlx_destroy_image(map->mlx_ptr, map->floor);
 	if (map->exit->img_1)
-		mlx_destroy_image(map->mlx_ptr,map->exit->img_1);
+		mlx_destroy_image(map->mlx_ptr, map->exit->img_1);
 	if (map->exit->img_2)
-		mlx_destroy_image(map->mlx_ptr,map->exit->img_2);
+		mlx_destroy_image(map->mlx_ptr, map->exit->img_2);
 }
 
 void	free_window(t_map *map)

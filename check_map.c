@@ -91,8 +91,8 @@ int	checker_map(t_map *map)
 	map_copy = NULL;
 	if (len_lines(map))
 		return (1);
-	if (check_border_up_right(map) ||
-		check_border_down_left(map))
+	if (check_border_up_right(map)
+		|| check_border_down_left(map))
 		return (1);
 	if (check_main_char(map) || check_exit(map))
 		return (1);

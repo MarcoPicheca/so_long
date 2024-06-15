@@ -29,7 +29,7 @@ int	ft_is_ber(char *str, int len, char *ext)
 	return (1);
 }
 
-int args_check(char *str)
+int	args_check(char *str)
 {
 	int	i;
 	int	fd;
