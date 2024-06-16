@@ -96,9 +96,10 @@ int		exit_free(t_map *map);
 int		loop_player(t_map *map);
 void	**convert_pers(void *mlx_ptr);
 int		convert_sprites(t_map *map);
-void	move_left(t_map *map);
-void	move_right(t_map *map);
-void	move_up(t_map *map);
-void	move_down(t_map *map);
+void	move_left(t_map *map, int j);
+void	move_right(t_map *map, int j);
+void	move_up(t_map *map, int j);
+void	move_down(t_map *map, int j);
+void	finish_game(t_map *map);
 
 #endif

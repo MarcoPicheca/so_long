@@ -59,29 +59,20 @@ int	convert_sprites(t_map *map)
 
 int	key_hook(int key, t_map *map)
 {
-	static int	i = 0;
+	static int	j = 0;
 
-	i++;
 	if (key == K_ESC)
 		return (free_window(map), 0);
-	if (key == K_A || key == K_LEFT)
-		move_left(map);
-	if (key == K_S || key == K_DOWN)
-		move_down(map);
-	if (key == K_D || key == K_RIGHT)
-		move_right(map);
-	if (key == K_W || key == K_UP)
-		move_up(map);
-	ft_printf("key hook %d, moves number %d\n", key, i);
+	if ((key == K_A || key == K_LEFT) && j++ >= 0 && !map->flag_end)
+		move_left(map, (int)j);
+	if ((key == K_S || key == K_DOWN) && j++ >= 0 && !map->flag_end)
+		move_down(map, (int)j);
+	if ((key == K_D || key == K_RIGHT) && j++ >= 0 && !map->flag_end)
+		move_right(map, (int)j);
+	if ((key == K_W || key == K_UP) && j++ >= 0 && !map->flag_end)
+		move_up(map, (int)j);
 	if (map->flag_end)
-	{
-		mlx_clear_window(map->mlx_ptr, map->win_mlx);
-		mlx_string_put(map->mlx_ptr, map->win_mlx, (map->columns / 2 * 50),
-			(map->lines / 2 * 50), WHITE_HEX, "YOU WON!");
-		mlx_string_put(map->mlx_ptr, map->win_mlx,
-			((map->columns / 2 - 1) * 50),
-			((map->lines - 1) * 50), WHITE_HEX, "Press x or ESC to exit");
-	}
+		finish_game(map);
 	return (0);
 }
 
@@ -104,7 +95,7 @@ void	*game_start(t_map *map)
 	return (NULL);
 }
 
-// TODO: NORMINETTAREEEEEEEE
+// TODO: unplayable map con flood fill per i collectible
 
 int	main(int ac, char **av)
 {

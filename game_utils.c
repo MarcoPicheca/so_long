@@ -6,17 +6,11 @@
 /*   By: mapichec <mapichec@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 19:54:33 by mapichec          #+#    #+#             */
-/*   Updated: 2024/06/07 17:16:26 by mapichec         ###   ########.fr       */
+/*   Updated: 2024/06/16 17:45:20 by mapichec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	delay_frame(int del)
-{
-	while (del > 0)
-		del--;
-}
 
 int	loop_player(t_map *map)
 {
@@ -26,12 +20,22 @@ int	loop_player(t_map *map)
 	{
 		if (i == 6)
 			i = 0;
-		put_image(map->mlx_ptr, map->win_mlx, map->pers->act[i],
+		put_image(map, map->pers->act[i],
 			map->pers->y, map->pers->x);
 		i++;
-		delay_frame(DELAY);
+		usleep(99999);
 	}
 	return (0);
+}
+
+void	finish_game(t_map *map)
+{
+	mlx_clear_window(map->mlx_ptr, map->win_mlx);
+	mlx_string_put(map->mlx_ptr, map->win_mlx, (map->columns / 2 * 50),
+		(map->lines / 2 * 50), WHITE_HEX, "YOU WON!");
+	mlx_string_put(map->mlx_ptr, map->win_mlx,
+		((map->columns / 2 - 1) * 50),
+		((map->lines - 1) * 50), RED_HEX, "Press x or ESC to exit");
 }
 
 void	put_image(t_map *map, void *img, int j, int i)
