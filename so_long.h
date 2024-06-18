@@ -84,6 +84,7 @@ int		check_border_down_left(t_map *map);
 char	**copy_map(t_map *map);
 int		flood_fill(char **map, int p_x, int p_y);
 void	fill_visit(char **map, int p_x, int p_y);
+int		check_coll(t_map *map);
 void	ft_free_matrix(t_map *map);	
 void	free_matrix(char **map);
 void	free_act(t_map *map);

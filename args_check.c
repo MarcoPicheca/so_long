@@ -42,7 +42,6 @@ int	args_check(char *str)
 		close(fd);
 		exit(0);
 	}
-	close (fd);
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 	{

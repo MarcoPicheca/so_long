@@ -49,7 +49,6 @@ void	move_left(t_map *map, int j)
 		ft_printf("moves number %d left\n", j);
 	}
 	map->pers->y--;
-	images_to_wndw(map);
 }
 
 void	move_right(t_map *map, int j)
@@ -76,7 +75,6 @@ void	move_right(t_map *map, int j)
 		ft_printf("moves number %d right\n", j);
 	}
 	map->pers->y++;
-	images_to_wndw(map);
 }
 
 void	move_up(t_map *map, int j)
@@ -103,7 +101,6 @@ void	move_up(t_map *map, int j)
 		ft_printf("moves number %d up\n", j);
 	}
 	map->pers->x--;
-	images_to_wndw(map);
 }
 
 void	move_down(t_map *map, int j)
@@ -130,5 +127,4 @@ void	move_down(t_map *map, int j)
 		ft_printf("moves number %d down\n", j);
 	}
 	map->pers->x++;
-	images_to_wndw(map);
 }

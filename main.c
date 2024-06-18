@@ -71,6 +71,7 @@ int	key_hook(int key, t_map *map)
 		move_right(map, (int)j);
 	if ((key == K_W || key == K_UP) && j++ >= 0 && !map->flag_end)
 		move_up(map, (int)j);
+	images_to_wndw(map);
 	if (map->flag_end)
 		finish_game(map);
 	return (0);

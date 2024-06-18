@@ -101,5 +101,7 @@ int	checker_map(t_map *map)
 		return (1);
 	if (flood_fill(map_copy, map->pers->x, map->pers->y))
 		return (1);
+	if (check_coll(map))
+		return (1);
 	return (0);
 }

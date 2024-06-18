@@ -7,6 +7,7 @@ SRC	= main.c \
 	  args_check.c \
 	  free_utils.c \
 	  check_map.c \
+	  coll_check.c \
 	  algo_flood_fill.c \
 	  game_free_utils.c \
 	  moves.c \
