@@ -41,14 +41,18 @@ $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(PRINTF) -o $(NAME)
 	@echo $(GREEN) "SO_LONG COMPILED\n"
 
+# download repo minilib x 
 download:
-	@wget https://cdn.intra.42.fr/document/document/21656/minilibx-linux.tgz
-	@tar -xf minilibx-linux.tgz
-	@$(RM) minilibx-linux.tgz
+	@git clone https://github.com/42Paris/minilibx-linux.git
+	@echo "Cloned minilibx"
+
+# rm della minilibx da fare sempre prima del push 
+rm_libx:
+	@rm -rf minilibx-linux
+	@echo "removed minilibx"
 
 clean :
 	@make clean -sC minilibx-linux
-# TODO:ricordati di mettere la riozione della cartella della mlx
 	@make clean -sC libft
 	@make clean -sC ft_printf
 	@rm -rf $(OBJ)
